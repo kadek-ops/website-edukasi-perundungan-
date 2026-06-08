@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      Website Edukasi Pembullyan (Perundungan)
+      </title>
+    
+<style>
+  body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding-top: 60px; 
+            background-color:#ffffff;
+            line-height: 1.6;
+        }
+
+        nav{
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background-color: #A0D6B4;
+             solid #e0e0e0;
+            z-index: 100;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        .logo img {
+  height:55px;
+  margin-right:15px;
+  transform: translateY(3px);
+}
+
+        .hamburger {
+            font-size:30px;
+            cursor: pointer;
+            background: none; border: none;
+            color:#00004D;
+            flex-shrink: 0;
+            margin-right:15px;
+            margin-left:15px;
+        }
+
+        .menu-wrapper {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            flex-grow: 1;
+        }
+
+        .menu-wrapper::-webkit-scrollbar { display: none; }
+
+        .menu-container { display: flex; list-style: none; margin: 0; padding: 0; }
+
+        .menu-link {
+            text-decoration: none; color:#00004D;
+            padding: 15px 15px; font-size: 15px;
+            display: flex; align-items: center;
+            cursor: pointer; background: none; border: none;
+        }
+        
+.search-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+#searchBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+#searchBtn img,
+.search-icon-img {
+    width:33px !important;
+    height: 33px !important
+    object-fit: contain !important;
+}
+
+.my-custom-modal {
+    position: fixed;
+    top: 70px; 
+    left: 50%;
+    transform: translate(-50%, -10px);
+    
+
+    background-color: #ffffff !important;
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    
+    width: 85%;
+    max-width: 310px;
+    
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease-in-out;
+    z-index: 999999 !important;
+}
+
+.my-custom-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0); 
+}
+
+.my-custom-modal input[type="text"] {
+    flex: 1;
+    border: 1.5px solid #00004D;
+    padding: 6px 12px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 13px;
+    background-color: #ffffff !important;
+    color: #00004D;
+    min-width: 0; 
+}
+
+#submitSearchBtn {
+    background-color:#A0D6B4 !important;
+    color: #00004D!important;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+
+        .dropdown-content {
+            display: none; position: absolute;
+            top: 100%; left:90px;
+            background-color:#ffffff; min-width:10px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 101;
+        }
+
+        .dropdown-content a {
+            color: #00004D; padding: 12px 16px;
+            text-decoration: none; display: block;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .show { display: block !important; }
+        .rotate { transform: rotate(180deg); }
+
+        .arrow {
+            width: 0; height: 0; 
+            border-left: 4.5px solid transparent;
+            border-right: 4.5px solid transparent;
+            border-top: 5px solid #00004D;
+            margin-left: 6px;
+            transition: 0.3s;
+        }
+
+        .overlay { 
+            display: none; position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.5); z-index: 1000; 
+        }
+        
+        .sidebar { 
+            height: 100%; width: 280px; 
+            position: fixed; top: 0; left: -280px; 
+            background-color:#ffffff; transition: 0.3s; 
+            z-index: 1001; overflow-y: auto;
+        }
+        
+.sosmed-sidebar-box {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
+
+.sosmed-sidebar-box p {
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 10px 0;
+}
+
+.sosmed-list {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.sosmed-list a {
+    display: inline-flex !important;
+    width: auto !important;
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+.sosmed-list img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+        .sidebar.active { left: 0; }
+
+        .brand-section {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: #A0D6B4;
+            border-bottom: 1px solid #eee;
+        }
+  .logo-img { width:80%; height:auto; border-radius:0;
+  object-fit: contain;
+ display:block; 
+    margin:0 auto;
+  }
+
+        .sidebar a { 
+            padding: 15px 15px; text-decoration: none; 
+            font-size: 15px; color:#00004D; display: block; 
+            border-bottom: 1px solid #f9f9f9; 
+        }
+
+        #social-bar-container {
+            position: fixed; bottom: 20px;
+            left: 0; right: 0;
+            display: flex; justify-content: center;
+            z-index: 90;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        #social-bar-container.visible {
+            opacity: 1; transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #social-bar-container.force-hide {
+            opacity: 0 !important;
+            transform: translateY(50px) !important;
+            pointer-events: none !important;
+        }
+
+        .social-bar {
+            background: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex; gap: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon { width: 35px; height: 35px; object-fit: contain; }
+
+        .content { padding: 30px 20px; max-width: 800px; margin: 0 auto; background: white; min-height: 1500px; }
+.close-btn-overlay {
+    position: fixed;
+    top: 50%;
+    left: calc(280px + (100% - 280px) / 2);
+    
+    transform: translate(-50%, -50%);
+    font-size:30px;
+    color:#ffffff;
+    cursor: pointer;
+    z-index: 3000;
+    display: none;
+    line-height: 1;
+    text-shadow: 0 0 15px rgba(0,0,0,0.5);
+    -webkit-tap-highlight-color: transparent;
+}
+.sidebar.active ~ .close-btn-overlay {
+    display: block;
+}
+.tombol-darurat {
+    position: fixed;
+    bottom: 95px;
+    right: 5px;
+    z-index: 1000;
+  }
+
+
+  .tombol-darurat img {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .tombol-darurat img:active {
+    transform: scale(0.9);
+  }
+
+}
+
+.no-click {
+    pointer-events: none; 
+    user-select: none;
+}
+
+.main-menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #a3e635;
+}
+.video-hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+.video-hero video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+  .header-jarak {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container-scroll {
+      max-width: 600px;
+      margin: 0 auto 80px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .kartu-edukasi {
+      margin-bottom: 20px !important;
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-left: 8px solid #A0D6B4;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .kartu-edukasi { border-left-color: #A0D6B4; }
+
+
+    .judul-section {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .kartu-edukasi.muncul{
+      opacity: 1;
+      transform: translateY(0);
+    }
+</style>
+</head>
+<body>
+<nav>
+
+    <div class="logo">
+        <img src="korban.png" alt="Logo">
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+
+    <div class="menu-wrapper">
+        <ul class="menu-container">
+
+            <li class="menu-item">
+                <button class="menu-link" onclick="toggleDropdown()"> 
+                    Program <span id="arrowIcon" class="arrow"></span>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Program Pendidikan</a>
+                    <a href="#">Program Kesehatan</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="search-container">
+
+<button id="searchBtn" type="button">
+    <img src="search.png" alt="Search" class="search-icon-img">
+</button>
+
+
+        <div class="my-custom-modal" id="searchModal">
+            <input type="text" id="searchInput" placeholder="Search ...">
+            <button id="submitSearchBtn" type="button">Search</button>
+        </div>
+    </div>
+</nav>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="brand-section">
+            <img src="bullying.png" alt="Logo" class="logo-img">
+        </div>
+                        <a href="definisi.html"> Definisi Pembullyan</a>
+                <a href="hukum.html">Jeratan Hukum</a>
+        <a href="#">Pendidikan Karakter</a>
+        <a href="#">Ilmu Filsafat Stoikisme</a>
+        <a href="#">Komunitas</a>
+        <div class="sosmed-sidebar-box">
+        <p>Ikuti Kami:</p>
+        <div class="sosmed-list">
+            <a href="#"><img src="instagram.png" alt="IG"></a>
+            <a href="#"><img src="facebook.png" alt="FB"></a>
+            <a href="#"><img src="tiktok.png" alt="TK"></a>
+            <a href="#"><img src="x.png" alt="X"></a>
+            <a href="#"><img src="youtube.png" alt="YT"></a>
+        </div>
+    </div>
+    </div>
+    <div class="close-btn-overlay" onclick="toggleMenu()">&times;</div>
+
+    <div id="social-bar-container">
+        <div class="social-bar">
+            <a href="#"><img src="instagram.png" alt="IG" class="social-icon"></a>
+            <a href="#"><img src="facebook.png" alt="FB" class="social-icon"></a>
+            <a href="https://www.tiktok.com/@apaitubullying"><img src="tiktok.png" alt="TK" class="social-icon"></a>
+            <a href="#"><img src="x.png" alt="X" class="social-icon"></a>
+            <a href="#"><img src="youtube.png" alt="YT" class="social-icon"></a>
+        </div>
+        
+    </div>
+
+      <a href="tel:110" class="tombol-darurat">
+    <img src="kontak.png" alt="Panggilan Darurat">
+  </a>
+
+<div class="video-hero">
+
+    <video autoplay muted loop playsinline class="no-click">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="header-jarak">
+    <h1>Edukasi Anti Perundungan</h1>
+  </div>
+
+  <div class="container-scroll">
+    <div class="kartu-edukasi">
+      <h3>Apa Itu Perundungan (Bullying)?</h3>
+      <p>Bullying adalah perilaku menyakiti, merendahkan, atau menindas orang lain yang dilakukan secara sengaja dan berulang kali.</p>
+    </div>
+    <div class="kartu-edukasi">
+      <h3>Pendidikan Karakter</h3>
+      <p>Sesungguhnya bukan sejarahnya yang gagal. Namun cara berpikir kerdil, itulah tantangan terbesar kita.</p>
+      <p>
+        Untuk bisa mendidik karakter, tiap orang harus didik dirinya dahulu. Tidak serakah misalnya, bisakah dipraktekkan untuk tidak menambah minimarket ritelnya yang sudah berjumlah ribuan.
+      </p>
+      <p>
+        Tanpa fondasi, mustahil bangunan kokoh berdiri menjulang. Begitulah manusia, tanpa fondasi perangainya akan mengubahnya bukan lagi manusia. Tapi monster.
+      </p>
+    </div>
+    <div class="kartu-edukasi">
+      <h3>Ilmu Filsafat Stoikisme</h3>
+      <p>Epictetus mengatakan adalah penyia-nyiakan energi emosional.</p>
+ <p>sikap terbaik adalah menerima hasilnya tanpa rasa bersalah.
+Hasilnya bergantung pada terlalu banyak variabel.</p>
+
+<p>Tidak menganjurkan sikap pasrah atau menyerah. Sikap pasrah atau menyerah bertentangan.</p>
+
+<p>Sejumlah hal ada dalam kendali kita, Selebihnya tidak.</p>
+
+<p>Hidup selaras dengan alam.    </p>
+    </div>
+    <div class="kartu-edukasi">
+      <h3>KUHP (Kitab Undang-Undang Hukum Pidana)</h3>
+      <p>Meski istilah bullying tidak disebut secara eksplisit dalam KUHP baru, perbuatan-perbuatan yang dikategorikan sebagai perundungan dapat diproses secara hukum sepanjang unsur-unsur deliknya terpenuhi.</p>
+    </div>
+     <div class="kartu-edukasi">
+      <h3>HAM (Hak Asasi Manusia)</h3>
+      <p>Bullying termasuk bentuk pelanggaran HAM (Hak Asasi Manusia).</p>
+    </div>
+  </div>
+       <script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("myDropdown");
+        const arrow = document.getElementById("arrowIcon");
+        if (dropdown) dropdown.classList.toggle("show");
+        if (arrow) arrow.classList.toggle("rotate");
+    }
+
+    function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const body = document.body;
+        const socialBar = document.getElementById("social-bar-container");
+        
+        if (!sidebar) return;
+
+        sidebar.classList.toggle("active");
+        
+        if (sidebar.classList.contains("active")) {
+            if (overlay) overlay.style.display = "block";
+            body.style.overflow = "hidden";
+            body.style.overscrollBehavior = "contain"; 
+            if (socialBar) socialBar.classList.add("force-hide");
+        } else {
+            if (overlay) overlay.style.display = "none";
+            body.style.overflow = "auto";
+            body.style.overscrollBehavior = "auto";
+            if (socialBar) socialBar.classList.remove("force-hide");
+        }
+    }
+    window.onscroll = function() {
+        const socialBar = document.getElementById("social-bar-container");
+        const sidebar = document.getElementById("sidebar");
+
+        if (socialBar && sidebar) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                if (!sidebar.classList.contains("active")) {
+                    socialBar.classList.add("visible");
+                }
+            } else {
+                socialBar.classList.remove("visible");
+            }
+        }
+    };
+    window.onclick = function(event) {
+        const dropdown = document.getElementById("myDropdown");
+        const arrow = document.getElementById("arrowIcon");
+
+        if (!event.target.matches('.menu-link') && !event.target.matches('.arrow')) {
+            if (dropdown) dropdown.classList.remove("show");
+            if (arrow) arrow.classList.remove("rotate");
+        }
+    };
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchBtn = document.getElementById('searchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const searchInput = document.getElementById('searchInput');
+        const submitSearchBtn = document.getElementById('submitSearchBtn');
+
+        if (searchBtn && searchModal && searchInput) {
+            searchBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchModal.classList.toggle('active');
+                if (searchModal.classList.contains('active')) {
+                    setTimeout(() => searchInput.focus(), 50);
+                }
+            });
+
+            searchModal.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            document.addEventListener('click', function() {
+                searchModal.classList.remove('active');
+            });
+        }
+                if (submitSearchBtn && searchInput) {
+
+            const daftarHalamanLain = [
+                {
+                    kataKunci: ["hukum", "pasal", "sanksi", "pidana", "legal",],
+                    urlTujuan: "hukum.html"
+                },
+                {
+                    kataKunci: ["perundungan", "bullying", "intimidasi", "rundung",
+                    "definisi",
+                    "jenis perundungan",
+                    "bullying",
+                    "edukasi"],
+                    urlTujuan: "definisi.html"
+                },
+                {
+                    kataKunci: ["kontak", "hubungi", "bantuan", "pengaduan"],
+                    urlTujuan: "kontak.html"
+                }
+            ];
+
+            const jalankanPencarian = function(event) {
+                if (event) event.preventDefault();
+                const query = searchInput.value.trim().toLowerCase();
+
+                if (query === "") {
+                    alert("Silakan masukkan kata kunci pencarian!");
+                    return;
+                }
+
+                const halamanDitemukan = daftarHalamanLain.find(halaman => 
+                    halaman.kataKunci.some(kunci => query.includes(kunci) || kunci.includes(query))
+                );
+
+                if (halamanDitemukan) {
+
+                    window.location.href = halamanDitemukan.urlTujuan;
+                } else {
+                  
+                    const ditemukanDiHalamanIni = window.find(searchInput.value.trim(), false, false, true);
+
+                    if (ditemukanDiHalamanIni) {
+                        searchModal.classList.remove('active');
+                    } else {
+                        alert(`Kata "${searchInput.value.trim()}" tidak ditemukan di website ini.`);
+                    }
+                }
+            };
+
+            submitSearchBtn.addEventListener('click', jalankanPencarian);
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    jalankanPencarian(e);
+                }
+            });
+        }
+    });
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const elemenAnimasi = document.querySelectorAll('.kartu-edukasi, .kartu-berita');
+        if (elemenAnimasi.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('muncul');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.15 
+            });
+
+            elemenAnimasi.forEach((item) => {
+                observer.observe(item);
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

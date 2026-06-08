@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi Anti-Bullying</title>
+    <style>
+        html {
+            --primary:#A0D6B4;  
+            --accent:#A0D6B4;   
+            --bg: #f1f5f9;       
+            --text: #0f172a;     
+            --white: #ffffff;    
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent);
+            background-color: #e9ecef;
+        }
+
+        .tab-btn.active {
+            color: var(--white);
+            background-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-btn {
+                border-radius: 5px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Stop Bullying!</h1>
+        <p>Kenali, Pahami, dan Cegah Perundungan di Sekitar Kita</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn" onclick="openTab(event, 'jenis')">Jenis-Jenis</button>
+            <button class="tab-btn" onclick="openTab(event, 'penyebab')">Penyebab</button>
+            <button class="tab-btn" onclick="openTab(event, 'gejala')">Gejala Korban</button>
+        </div>
+        <div id="jenis" class="tab-content">
+            <h2>Jenis-Jenis Bullying</h2>
+            <ul>
+                <li><strong>Bullying Fisik:</strong> Kontak fisik langsung seperti memukul, menendang, menampar, mendorong, atau merusak barang milik korban.</li>
+                <li><strong>Bullying Verbal:</strong> Menggunakan kata-kata untuk menyakiti, seperti mengejek, menghina, memberi julukan buruk, atau mengancam.</li>
+                <li><strong>Bullying Sosial/Relasional:</strong> Merusak reputasi atau hubungan sosial seseorang, seperti menyebarkan rumor, mengucilkan, atau mengabaikan dengan sengaja.</li>
+                <li><strong>Cyberbullying (Dunia Maya):</strong> Intimidasi menggunakan media digital atau media sosial, seperti mengirim pesan kejam, menyebarkan foto memalukan, atau membuat akun palsu untuk merusak nama baik.</li>
+            </ul>
+        </div>
+
+        <div id="penyebab" class="tab-content">
+            <h2>Penyebab Bullying</h2>
+            <p>Bullying bisa terjadi karena berbagai faktor kompleks, di antaranya:</p>
+            <ul>
+                <li><strong>Faktor Pelaku:</strong> Adanya masalah pribadi, rasa tidak percaya diri yang ditutupi dengan kekuasaan, atau pernah menjadi korban bullying sebelumnya.</li>
+                <li><strong>Faktor Keluarga:</strong> Kurangnya perhatian dari orang tua, pola asuh yang terlalu keras, atau sering menyaksikan kekerasan di dalam rumah tangga.</li>
+                <li><strong>Faktor Lingkungan/Sekolah:</strong> Lingkungan sosial yang abai, kurangnya pengawasan, atau budaya senioritas yang diwajarkan.</li>
+                <li><strong>Faktor Media:</strong> Paparan konten kekerasan melalui film, game, atau media sosial tanpa pengawasan yang tepat.</li>
+            </ul>
+        </div>
+
+        <div id="gejala" class="tab-content">
+            <h2>Gejala Korban Bullying</h2>
+            <p>Seringkali korban takut melapor. Perhatikan perubahan tanda dan gejala berikut pada seseorang:</p>
+            <ul>
+                <li><strong>Perubahan Fisik:</strong> Luka atau memar yang tidak jelas penyebabnya, pakaian robek, atau barang-barang pribadi rusak/hilang misterius.</li>
+                <li><strong>Perubahan Akademik:</strong> Penurunan nilai sekolah secara drastis, enggan pergi ke sekolah, atau sering beralasan sakit untuk menghindari aktivitas sosial.</li>
+                <li><strong>Perubahan Emosional:</strong> Tampak cemas, murung, mendadak menjadi penyendiri, mudah marah, atau mengalami gangguan tidur (insomnia/mimpi buruk).</li>
+                <li><strong>Perubahan Sosial:</strong> Menarik diri dari lingkaran pertemanan atau kehilangan minat pada hobi yang biasanya mereka sukai.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabId) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
